@@ -1,0 +1,18 @@
+@if (!product()) {
+  <p>Product not found.</p>
+} @else {
+  <section style="display:grid; grid-template-columns: 1fr 1fr; gap:24px;">
+    <img [src]="product()!.imageUrl" style="width:100%; border-radius:16px;" alt="Product example"/>
+
+    <div>
+      <h1>{{ product()!.name }}</h1>
+      <p>{{ product()!.description }}</p>
+      <p><strong>${{ product()!.price }}</strong></p>
+      <p>Stock: {{ product()!.stock }}</p>
+
+      <button (click)="addToCart()" [disabled]="product()!.stock <= 0">
+        Add to cart
+      </button>
+    </div>
+  </section>
+}

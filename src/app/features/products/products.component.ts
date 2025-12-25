@@ -2,11 +2,12 @@ import { Component, signal } from '@angular/core';
 import { ProductsService } from '../../core/services/products.service';
 import { CartService } from '../../core/services/cart.service';
 import { Product } from '../../core/models/product.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })

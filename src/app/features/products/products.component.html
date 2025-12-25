@@ -2,17 +2,14 @@
 
 <section style="display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:16px;">
   @for (product of products(); track product.id) {
-    <article style="border:1px solid #ddd; padding:12px; border-radius:12px;">
-      <img [src]="product.imageUrl" style="width:100%; border-radius:10px;" alt="This is a product"/>
-      <h3 style="margin:10px 0 4px;">{{ product.name }}</h3>
-      <p style="margin:0 0 8px;">{{ product.description }}</p>
-      <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
-        <strong>${{ product.price }}</strong>
-        <button (click)="addToCart(product)" [disabled]="product.stock <= 0">
-          Add to cart
-        </button>
-      </div>
-      <p style="margin:8px 0 0; font-size:12px;">Stock: {{ product.stock }}</p>
-    </article>
+    <article
+    style="border:1px solid #ddd; padding:12px; border-radius:12px; cursor:pointer;"
+    [routerLink]="['/products', product.id]"
+  >
+    <img [src]="product.imageUrl" style="width:100%; border-radius:10px;" alt="Product example"/>
+    <h3>{{ product.name }}</h3>
+    <p>{{ product.description }}</p>
+    <strong>${{ product.price }}</strong>
+  </article>
   }
 </section>
