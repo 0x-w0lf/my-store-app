@@ -1,1 +1,11 @@
-<p>public works!</p>
+<nav style="display:flex; gap:12px; padding:12px; border-bottom:1px solid #ddd;">
+  <a routerLink = "/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+  <a routerLink="/products" routerLinkActive="active">Products</a>
+  <a routerLink="/cart" routerLinkActive="active">Cart</a>
+  <a routerLink="/checkout" routerLinkActive="active">Checkout</a>
+  <a routerLInk="/admin" routerLinkActive="active">Admin</a>
+</nav>
+
+<main style="padding:16px">
+  <router-outlet/>
+</main>
