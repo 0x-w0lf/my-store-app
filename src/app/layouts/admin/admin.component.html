@@ -1,1 +1,8 @@
-<p>admin works!</p>
+<nav style="display:flex; gap: 12px; padding: 12px; border-bottom: 1px solid #ddd;">
+  <a routerLInk="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Back to store</a>
+</nav>
+
+<section style="padding: 16px;">
+  <h2>Admin</h2>
+  <router-outlet />
+</section>
