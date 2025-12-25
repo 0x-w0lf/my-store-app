@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { ProductsService } from '../../core/services/products.service';
+import { Product } from '../../core/models/product.model';
 
 @Component({
   selector: 'app-products',
@@ -8,5 +10,9 @@ import { Component } from '@angular/core';
   styleUrl: './products.component.scss'
 })
 export class ProductsComponent {
+  products = signal<Product[]>([]);
 
+  constructor(private productsService: ProductsService) {
+    this.products.set(this.productsService.getProducts());
+  }
 }
