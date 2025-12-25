@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { ProductsService } from '../../core/services/products.service';
+import { CartService } from '../../core/services/cart.service';
 import { Product } from '../../core/models/product.model';
 
 @Component({
@@ -12,7 +13,14 @@ import { Product } from '../../core/models/product.model';
 export class ProductsComponent {
   products = signal<Product[]>([]);
 
-  constructor(private productsService: ProductsService) {
+  constructor(
+    private productsService: ProductsService,
+    private cartService: CartService
+  ) {
     this.products.set(this.productsService.getProducts());
+  }
+
+  public addToCart(product: Product): void {
+    this.cartService.add(product, 1);
   }
 }

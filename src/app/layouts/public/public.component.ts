@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterLinkActive, RouterLink } from "@angular/router";
+import { CartService } from '../../core/services/cart.service';
 
 @Component({
   selector: 'app-public',
@@ -9,5 +10,5 @@ import { RouterOutlet, RouterLinkActive, RouterLink } from "@angular/router";
   styleUrl: './public.component.scss'
 })
 export class PublicComponent {
-
+  constructor(public cartService: CartService) {}
 }

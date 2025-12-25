@@ -1,1 +1,35 @@
-<p>cart works!</p>
+<h1>Cart</h1>
+
+@if (cartService.items().length === 0) {
+  <p>Your cart is empty.</p>
+} @else {
+  <section style="display:flex; flex-direction:column; gap:12px;">
+    @for (item of cartService.items(); track item.product.id) {
+      <div style="border:1px solid #ddd; padding:12px; border-radius:12px; display:flex; justify-content:space-between; gap:12px; align-items:center;">
+        <div style="display:flex; gap:12px; align-items:center;">
+          <img [src]="item.product.imageUrl" style="width:90px; border-radius:10px;" alt="This is a product"/>
+          <div>
+            <div style="font-weight:600;">{{ item.product.name }}</div>
+            <div style="font-size:12px;">${{ item.product.price }} each</div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:8px; align-items:center;">
+          <button (click)="decrease(item.product.id)">-</button>
+          <span style="min-width:24px; text-align:center;">{{ item.quantity }}</span>
+          <button (click)="increase(item.product.id)">+</button>
+          <button (click)="cartService.remove(item.product.id)">Remove</button>
+        </div>
+      </div>
+    }
+
+    <div style="border-top:1px solid #ddd; padding-top:12px; display:flex; justify-content:space-between;">
+      <div>Total items: {{ cartService.totalItems() }}</div>
+      <div><strong>Total: ${{ cartService.totalPrice() }}</strong></div>
+    </div>
+
+    <div style="display:flex; gap:8px;">
+      <button (click)="cartService.clear()">Clear cart</button>
+    </div>
+  </section>
+}
