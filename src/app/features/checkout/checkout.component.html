@@ -1,1 +1,112 @@
-<p>checkout works!</p>
+<h1>Checkout</h1>
+
+@if (cartService.totalItems() === 0) {
+  <p>Your cart is empty. Add products before checkout.</p>
+} @else {
+  <p>Total: <strong>${{ cartService.totalPrice() }}</strong></p>
+}
+
+<form [formGroup]="form" (ngSubmit)="submit()" style="display:flex; flex-direction:column; gap:20px; max-width:720px;">
+
+  <fieldset formGroupName="customer" style="border:1px solid #ddd; padding:16px; border-radius:12px;">
+    <legend>Customer</legend>
+
+    <label>
+      Full name
+      <input formControlName="fullName" />
+    </label>
+    @if (form.controls.customer.controls.fullName.touched && form.controls.customer.controls.fullName.invalid) {
+      <div style="font-size:12px;">Full name is required (min 3).</div>
+    }
+
+    <label>
+      Email
+      <input formControlName="email" />
+    </label>
+    @if (form.controls.customer.controls.email.touched && form.controls.customer.controls.email.invalid) {
+      <div style="font-size:12px;">Valid email required.</div>
+    }
+
+    <label>
+      Phone
+      <input formControlName="phone" />
+    </label>
+    @if (form.controls.customer.controls.phone.touched && form.controls.customer.controls.phone.invalid) {
+      <div style="font-size:12px;">Phone required (min 8).</div>
+    }
+  </fieldset>
+
+  <fieldset formGroupName="shipping" style="border:1px solid #ddd; padding:16px; border-radius:12px;">
+    <legend>Shipping</legend>
+
+    <label>
+      Address 1
+      <input formControlName="address1" />
+    </label>
+    @if (form.controls.shipping.controls.address1.touched && form.controls.shipping.controls.address1.invalid) {
+      <div style="font-size:12px;">Address is required.</div>
+    }
+
+    <label>
+      Address 2
+      <input formControlName="address2" />
+    </label>
+
+    <label>
+      City
+      <input formControlName="city" />
+    </label>
+    @if (form.controls.shipping.controls.city.touched && form.controls.shipping.controls.city.invalid) {
+      <div style="font-size:12px;">City is required.</div>
+    }
+
+    <label>
+      Country
+      <input formControlName="country" />
+    </label>
+
+    <label>
+      Postal Code
+      <input formControlName="postalCode" />
+    </label>
+    @if (form.controls.shipping.controls.postalCode.touched && form.controls.shipping.controls.postalCode.invalid) {
+      <div style="font-size:12px;">Postal code required (min 4).</div>
+    }
+  </fieldset>
+
+  <fieldset formGroupName="payment" style="border:1px solid #ddd; padding:16px; border-radius:12px;">
+    <legend>Payment (mock)</legend>
+
+    <label>
+      Card holder
+      <input formControlName="cardHolder" />
+    </label>
+
+    <label>
+      Card number
+      <input formControlName="cardNumber" inputmode="numeric" />
+    </label>
+
+    <div style="display:flex; gap:12px;">
+      <label style="flex:1;">
+        Exp MM
+        <input formControlName="expMonth" inputmode="numeric" />
+      </label>
+
+      <label style="flex:1;">
+        Exp YY
+        <input formControlName="expYear" inputmode="numeric" />
+      </label>
+
+      <label style="flex:1;">
+        CVC
+        <input formControlName="cvc" inputmode="numeric" />
+      </label>
+    </div>
+  </fieldset>
+
+  <button type="submit" [disabled]="checkoutDisabled()">
+    Place order
+  </button>
+</form>
+
