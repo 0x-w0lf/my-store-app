@@ -1,112 +1,130 @@
-<h1>Checkout</h1>
+<section class="checkout">
+  <header class="checkout__header">
+    <h1>Checkout</h1>
 
-@if (cartService.totalItems() === 0) {
-  <p>Your cart is empty. Add products before checkout.</p>
-} @else {
-  <p>Total: <strong>${{ cartService.totalPrice() }}</strong></p>
-}
-
-<form [formGroup]="form" (ngSubmit)="submit()" style="display:flex; flex-direction:column; gap:20px; max-width:720px;">
-
-  <fieldset formGroupName="customer" style="border:1px solid #ddd; padding:16px; border-radius:12px;">
-    <legend>Customer</legend>
-
-    <label>
-      Full name
-      <input formControlName="fullName" />
-    </label>
-    @if (form.controls.customer.controls.fullName.touched && form.controls.customer.controls.fullName.invalid) {
-      <div style="font-size:12px;">Full name is required (min 3).</div>
+    @if (cartService.totalItems() === 0) {
+      <p class="checkout__notice">Your cart is empty. Add products before checkout.</p>
+    } @else {
+      <p class="checkout__total">Total: <strong>${{ cartService.totalPrice() }}</strong></p>
     }
+  </header>
 
-    <label>
-      Email
-      <input formControlName="email" />
-    </label>
-    @if (form.controls.customer.controls.email.touched && form.controls.customer.controls.email.invalid) {
-      <div style="font-size:12px;">Valid email required.</div>
-    }
+  <form class="checkout__form" [formGroup]="form" (ngSubmit)="submit()">
+    <fieldset class="card" formGroupName="customer">
+      <legend class="card__title">Customer</legend>
 
-    <label>
-      Phone
-      <input formControlName="phone" />
-    </label>
-    @if (form.controls.customer.controls.phone.touched && form.controls.customer.controls.phone.invalid) {
-      <div style="font-size:12px;">Phone required (min 8).</div>
-    }
-  </fieldset>
+      <div class="grid grid--2">
+        <div class="field">
+          <label class="field__label">Full name</label>
+          <input class="field__control" formControlName="fullName" />
+          @if (form.controls.customer.controls.fullName.touched && form.controls.customer.controls.fullName.invalid) {
+            <div class="field__error">Full name is required (min 3).</div>
+          }
+        </div>
 
-  <fieldset formGroupName="shipping" style="border:1px solid #ddd; padding:16px; border-radius:12px;">
-    <legend>Shipping</legend>
+        <div class="field">
+          <label class="field__label">Email</label>
+          <input class="field__control" formControlName="email" />
+          @if (form.controls.customer.controls.email.touched && form.controls.customer.controls.email.invalid) {
+            <div class="field__error">Valid email required.</div>
+          }
+        </div>
+      </div>
 
-    <label>
-      Address 1
-      <input formControlName="address1" />
-    </label>
-    @if (form.controls.shipping.controls.address1.touched && form.controls.shipping.controls.address1.invalid) {
-      <div style="font-size:12px;">Address is required.</div>
-    }
+      <div class="grid grid--2">
+        <div class="field">
+          <label class="field__label">Phone</label>
+          <input class="field__control" formControlName="phone" />
+          @if (form.controls.customer.controls.phone.touched && form.controls.customer.controls.phone.invalid) {
+            <div class="field__error">Phone required (min 8).</div>
+          }
+        </div>
+        <div class="field field--spacer"></div>
+      </div>
+    </fieldset>
 
-    <label>
-      Address 2
-      <input formControlName="address2" />
-    </label>
+    <fieldset class="card" formGroupName="shipping">
+      <legend class="card__title">Shipping</legend>
 
-    <label>
-      City
-      <input formControlName="city" />
-    </label>
-    @if (form.controls.shipping.controls.city.touched && form.controls.shipping.controls.city.invalid) {
-      <div style="font-size:12px;">City is required.</div>
-    }
+      <div class="grid grid--2">
+        <div class="field">
+          <label class="field__label">Address 1</label>
+          <input class="field__control" formControlName="address1" />
+          @if (form.controls.shipping.controls.address1.touched && form.controls.shipping.controls.address1.invalid) {
+            <div class="field__error">Address is required.</div>
+          }
+        </div>
 
-    <label>
-      Country
-      <input formControlName="country" />
-    </label>
+        <div class="field">
+          <label class="field__label">Address 2</label>
+          <input class="field__control" formControlName="address2" />
+        </div>
+      </div>
 
-    <label>
-      Postal Code
-      <input formControlName="postalCode" />
-    </label>
-    @if (form.controls.shipping.controls.postalCode.touched && form.controls.shipping.controls.postalCode.invalid) {
-      <div style="font-size:12px;">Postal code required (min 4).</div>
-    }
-  </fieldset>
+      <div class="grid grid--3">
+        <div class="field">
+          <label class="field__label">City</label>
+          <input class="field__control" formControlName="city" />
+          @if (form.controls.shipping.controls.city.touched && form.controls.shipping.controls.city.invalid) {
+            <div class="field__error">City is required.</div>
+          }
+        </div>
 
-  <fieldset formGroupName="payment" style="border:1px solid #ddd; padding:16px; border-radius:12px;">
-    <legend>Payment (mock)</legend>
+        <div class="field">
+          <label class="field__label">Country</label>
+          <input class="field__control" formControlName="country" />
+        </div>
 
-    <label>
-      Card holder
-      <input formControlName="cardHolder" />
-    </label>
+        <div class="field">
+          <label class="field__label">Postal Code</label>
+          <input class="field__control" formControlName="postalCode" />
+          @if (form.controls.shipping.controls.postalCode.touched && form.controls.shipping.controls.postalCode.invalid) {
+            <div class="field__error">Postal code required (min 4).</div>
+          }
+        </div>
+      </div>
+    </fieldset>
 
-    <label>
-      Card number
-      <input formControlName="cardNumber" inputmode="numeric" />
-    </label>
+    <fieldset class="card" formGroupName="payment">
+      <legend class="card__title">Payment (mock)</legend>
 
-    <div style="display:flex; gap:12px;">
-      <label style="flex:1;">
-        Exp MM
-        <input formControlName="expMonth" inputmode="numeric" />
-      </label>
+      <div class="grid grid--2">
+        <div class="field">
+          <label class="field__label">Card holder</label>
+          <input class="field__control" formControlName="cardHolder" />
+        </div>
 
-      <label style="flex:1;">
-        Exp YY
-        <input formControlName="expYear" inputmode="numeric" />
-      </label>
+        <div class="field">
+          <label class="field__label">Card number</label>
+          <input class="field__control" formControlName="cardNumber" inputmode="numeric" />
+        </div>
+      </div>
 
-      <label style="flex:1;">
-        CVC
-        <input formControlName="cvc" inputmode="numeric" />
-      </label>
-    </div>
-  </fieldset>
+      <div class="grid grid--3">
+        <div class="field">
+          <label class="field__label">Exp MM</label>
+          <input class="field__control" formControlName="expMonth" inputmode="numeric" />
+        </div>
 
-  <button type="submit" [disabled]="checkoutDisabled()">
-    Place order
-  </button>
-</form>
+        <div class="field">
+          <label class="field__label">Exp YY</label>
+          <input class="field__control" formControlName="expYear" inputmode="numeric" />
+        </div>
 
+        <div class="field">
+          <label class="field__label">CVC</label>
+          <input class="field__control" formControlName="cvc" inputmode="numeric" />
+        </div>
+      </div>
+    </fieldset>
+
+    <footer class="checkout__actions">
+      <button class="btn btn--primary" type="submit" [disabled]="checkoutDisabled()">
+        Place order
+      </button>
+      <button class="btn" type="button" (click)="form.reset()">
+        Reset
+      </button>
+    </footer>
+  </form>
+</section>
