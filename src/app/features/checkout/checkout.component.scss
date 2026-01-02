@@ -1,0 +1,117 @@
+.checkout {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+}
+
+.checkout__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.checkout__notice {
+  margin: 0;
+  opacity: 0.8;
+}
+
+.checkout__total {
+  margin: 0;
+}
+
+.checkout__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card {
+  border: 1px solid #e5e5e5;
+  border-radius: 14px;
+  padding: 14px;
+  background: #fff;
+}
+
+.card__title {
+  padding: 0 8px;
+  font-weight: 600;
+}
+
+.grid {
+  display: grid;
+  gap: 12px;
+}
+
+.grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field--spacer {
+  visibility: hidden;
+}
+
+.field__label {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.field__control {
+  border: 1px solid #d6d6d6;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+  background: #fff;
+}
+
+.field__control:focus {
+  border-color: #9aa0a6;
+}
+
+.field__control.ng-invalid.ng-touched {
+  border-color: #d93025;
+}
+
+.field__error {
+  font-size: 12px;
+  color: #d93025;
+}
+
+.checkout__actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 6px;
+}
+
+.btn {
+  border: 1px solid #d6d6d6;
+  border-radius: 12px;
+  padding: 10px 14px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  border-color: #111;
+  background: #111;
+  color: #fff;
+}
