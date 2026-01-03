@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterLinkActive, RouterLink } from "@angular/router";
 import { CartService } from '../../core/services/cart.service';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-public',
@@ -10,5 +11,5 @@ import { CartService } from '../../core/services/cart.service';
   styleUrl: './public.component.scss'
 })
 export class PublicComponent {
-  constructor(public cartService: CartService) {}
+  constructor(public cartService: CartService, pulic authService: AuthService) {}
 }
