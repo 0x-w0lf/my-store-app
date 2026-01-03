@@ -1,11 +1,25 @@
-<nav style="display:flex; gap:12px; padding:12px; border-bottom:1px solid #ddd;">
-  <a routerLink = "/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-  <a routerLink="/products" routerLinkActive="active">Products</a>
-  <a routerLink="/cart" routerLinkActive="active">Cart ({{ cartService.totalItems() }})</a>
-  <a routerLink="/checkout" routerLinkActive="active">Checkout</a>
-  <a routerLink="/admin" routerLinkActive="active">Admin</a>
+<nav style="display:flex; gap:12px; padding:12px; border-bottom:1px solid #ddd; align-items:center; justify-content:space-between;">
+  <div style="display:flex; gap:12px; align-items:center;">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="/products" routerLinkActive="active">Products</a>
+    <a routerLink="/cart" routerLinkActive="active">Cart ({{ cartService.totalItems() }})</a>
+    <a routerLink="/checkout" routerLinkActive="active">Checkout</a>
+    <a routerLink="/admin" routerLinkActive="active">Admin</a>
+  </div>
+
+  <div style="display:flex; gap:8px; align-items:center;">
+    <span style="font-size:12px; opacity:.8;">Role: {{ authService.role() }}</span>
+
+    @if (!authService.isAuthenticated()) {
+      <button (click)="authService.loginAsCustomer()">Login Customer</button>
+      <button (click)="authService.loginAsAdmin()">Login Admin</button>
+    } @else {
+      <button (click)="authService.logout()">Logout</button>
+    }
+  </div>
 </nav>
 
-<main style="padding:16px">
-  <router-outlet/>
+<main style="padding:16px;">
+  <router-outlet />
 </main>
+
