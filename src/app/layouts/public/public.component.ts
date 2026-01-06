@@ -11,5 +11,5 @@ import { AuthService } from '../../core/services/auth.service';
   styleUrl: './public.component.scss'
 })
 export class PublicComponent {
-  constructor(public cartService: CartService, pulic authService: AuthService) {}
+  constructor(public cartService: CartService, public authService: AuthService) {}
 }
